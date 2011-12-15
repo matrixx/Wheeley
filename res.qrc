@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>gfx/wheeley.png</file>
+        <file>gfx/greybox.png</file>
+        <file>gfx/bluebox.png</file>
+    </qresource>
+</RCC>

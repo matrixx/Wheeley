@@ -27,7 +27,63 @@ Rectangle {
                 }
             }
         }
-        return result;
+        var temp = "";
+        for (var k = 0; k < 75; ++k) {
+            if (k < result.length) {
+                temp += result[k]
+            } else {
+                temp += " ";
+            }
+        }
+        var realres = "";
+        console.debug("before: " + temp);
+        console.debug("lenght: " + temp.length)
+        var verticalSpace = 0;
+        for (var l = 0; l < 5; ++l) {
+            console.debug("loop" + l);
+            var count = 0;
+            for (var m = 14; m > -1; --m) {
+                if (temp[l * 15 + m] == " ") {
+                    console.debug("was space adding count");
+                    count++
+                } else {
+                    break;
+                }
+            }
+            if (count == 15) {
+                verticalSpace++;
+            }
+            console.debug("count " + count)
+            var delta = Math.floor(count / 2);
+            console.debug("delta: " + delta)
+            for (var n = 0; n < 15; ++n) {
+                if (n >= delta) {
+                    console.debug("moving")
+                    realres += temp[l * 15 + n - delta]
+                } else {
+                    console.debug("adding space");
+                    realres += " "
+                }
+            }
+        }
+        var res = "";
+        if (verticalSpace == 4) {
+            for (var o = 0; o < 30; ++o) {
+                res += " ";
+            }
+            res += realres.substring(0, 44);
+        } else if (verticalSpace > 1) {
+            for (var p = 0; p < 15; ++p) {
+                res += " ";
+            }
+            res += realres.substring(0, 59);
+        } else {
+            res = realres;
+        }
+
+        console.debug("after: " + res);
+
+        return res;
     }
 
     function add(letter) {
@@ -77,11 +133,10 @@ Rectangle {
         Repeater {
             id: sentenceRepeater
             model: letters.columns * letters.rows
-            Rectangle {
+            Image {
                 property bool guessed: !isAlpha(singleLetter.text)
-                color: singleLetter.text == " " ? "#0000ff" : "#ddd"
-                border.width: 1
-                border.color: "#333"
+                source: singleLetter.text == " " ? "qrc:/gfx/bluebox.png" : "qrc:/gfx/greybox.png"
+
                 width: 56
                 height: 80
                 Text {

@@ -5,4 +5,5 @@ ListModel {
     ListElement { sentence: "this example includes: non-alphabet characters" }
     ListElement { sentence: "maximum character amount of one sentence is 75" }
     ListElement { sentence: "maximum length of one word is 15 characters" }
+    ListElement { sentence: "one liner" }
 }

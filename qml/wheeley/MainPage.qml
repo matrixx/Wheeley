@@ -50,11 +50,28 @@ Page {
             }
         }
         Button{
+            text: qsTr("Spin")
+            height: 80
+            width: 110
+            onClicked: {
+                wheely.visible = true
+            }
+        }
+        Button{
             text: qsTr("Solve")
             height: 80
             width: 110
             onClicked: {
                 questionView.currentItem.solve()
+            }
+        }
+        Item {
+            width: 200
+            height: 80
+            Text {
+                text: "Puzzle #" + (questionView.currentIndex + 1)
+                font { pixelSize: 25 }
+                anchors.centerIn: parent
             }
         }
     }
@@ -155,5 +172,9 @@ Page {
                 guessResult.visible = false
             }
         }
+    }
+    WheelPage {
+        id: wheely
+        visible: false
     }
 }
